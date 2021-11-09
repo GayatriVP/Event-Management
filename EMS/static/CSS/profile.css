@@ -1,0 +1,13 @@
+body {
+  background-color: #f3e0dc;
+}
+.container {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 10px;
+}
+.heads {
+  color: #5c2018;
+  font-family: "B612", sans-serif;
+}

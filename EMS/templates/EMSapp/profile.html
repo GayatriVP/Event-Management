@@ -1,0 +1,40 @@
+{% extends 'main_template.html' %}
+{% load static %}
+{% block title %}EMS/Profile{% endblock %}
+{% block stylelinks %} 
+<link rel="stylesheet" href="{% static 'CSS/profile.css' %}"/>
+{% endblock %}
+{% block content %}
+{% if profile %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <input class="col-md-6 form-group form-control" disabled value="{{profile.name}}"/>
+        </div>
+        <div class="col-md-6">
+            <input class="col-md-6 form-group form-control" disabled value="{{profile.email}}"/>
+        </div>
+    </div>
+    <div>
+        <h2 class="heads">Bookings</h2>
+        {% if bookings %}
+        <ul>
+            {% for key,value in bookings %}
+            <li>value.event</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <div>
+        <h2 class="heads">Waiting</h2>
+        {% if waiting %}
+        <ul>
+            {% for key,value in bookings %}
+            <li>value.event</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
