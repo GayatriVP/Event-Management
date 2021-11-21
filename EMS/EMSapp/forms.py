@@ -21,13 +21,13 @@ CAPACITY = [(x, x) for x in caps.split(',')]
 
 
 class BookEvent(forms.Form):
-    slots = forms.CharField(max_length=150, label="Timings",
-                            widget=forms.Select(choices=Slots))
+    slots = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple, choices=Slots)
     event_type = forms.CharField(
         max_length=150, label="Event Type", widget=forms.Select(choices=EVENT_TYPE))
     capacity = forms.IntegerField(
         label="No. of People", widget=forms.Select(choices=CAPACITY))
-    services = forms.CharField(
-        max_length=250, label="Services", widget=forms.Select(choices=SERVICES))
+    services = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple, choices=SERVICES)
     date = forms.DateField(
         widget=forms.widgets.DateInput(attrs={'type': 'date'}))

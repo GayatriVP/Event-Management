@@ -16,14 +16,14 @@ def profile(request):
     # newrec.save()
     uname = "testaccount"
     myprof = Customers.objects.get(username=uname)
-    cust_id = myprof.cust_id
-    bookings = Bookings.objects.filter(customer_id=cust_id)
+    bookings = Bookings.objects.filter(customer_id=myprof)
+    events = Events.objects.get(event_id=1)
     booked = {}
     i = 0
     for b in bookings:
         booked[i] = b
         i += 1
-    res = {"profile": myprof, "bookings": booked}
+    res = {"profile": myprof, "bookings": booked, "events": events}
     return render(request, "EMSapp/profile.html", res)
 
 
@@ -34,10 +34,10 @@ def book_event(request):
         form = BookEvent(request.POST)
         if form.is_valid():
             new_booking = Bookings(
-                slots=form.cleaned_data['slots'],
+                slots=form.cleaned_data.get('slots'),
                 event_type=form.cleaned_data['event_type'],
                 capacity=form.cleaned_data['capacity'],
-                services=form.cleaned_data['services'],
+                services=form.cleaned_data.get('services'),
                 date=form.cleaned_data['date'],
                 customer_id=cust_id,
                 cust_event_id=event_id
