@@ -17,9 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from EMSapp import views
-from django.contrib.auth.models import User
+from django.views.generic import TemplateView
 
 urlpatterns = [
+    path("", include('EMSapp.urls')),
     path('', include('django.contrib.auth.urls')),
     url(r'profile/', views.profile, name='profile'),
     path('admin/', admin.site.urls),

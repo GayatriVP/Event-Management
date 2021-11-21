@@ -1,0 +1,18 @@
+{% extends 'main_template.html' %}
+{% load static %}
+{% block title %}EMS/Book Event{% endblock %}
+{% block stylelinks %} 
+<link rel="stylesheet" href="{% static 'CSS/profile.css' %}"/>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <form name="form" method="POST">
+      <fieldset>
+        <legend>Form</legend>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </fieldset>
+    </form>
+</div>
+{% endblock %}

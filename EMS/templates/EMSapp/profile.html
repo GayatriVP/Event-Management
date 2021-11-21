@@ -18,11 +18,31 @@
     <div>
         <h2 class="heads">Bookings</h2>
         {% if bookings %}
-        <ul>
-            {% for key,value in bookings %}
-            <li>value.event</li>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Booking id</th>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Timings</th>
+                    <th>No of People</th>
+                    <th>Services</th>   
+                    <th class="text-center" colspan="2">Actions</th>      
+                </tr>
+            </thead>
+            {% for key,value in bookings.items %} 
+            <tr>           
+                <td>{{value.book_id}}</td>
+                <td>{{value.event_type}}</td>
+                <td>{{value.date}}</td>
+                <td>{{value.slots}}</td>
+                <td>{{value.capacity}}</td>
+                <td>{{value.services}}</td>
+                <td><button class="btn"><i class="fas fa-edit"></i></button></td>
+                <td><button class="btn"><i class="fas fa-trash"></i></button></td>
+            </tr>
             {% endfor %}
-        </ul>
+        </table>
         {% endif %}
     </div>
     <div>
