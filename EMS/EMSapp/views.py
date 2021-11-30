@@ -32,6 +32,7 @@ def book_event(request):
     if request.method == "POST":
         cust_id = Customers.objects.get(cust_id=1)
         event_id = Events.objects.get(event_id=1)
+        eve = event_id.location
         form = BookEvent(request.POST)
         if form.is_valid():
             new_booking = Bookings(
@@ -39,6 +40,7 @@ def book_event(request):
                 event_type=form.cleaned_data['event_type'],
                 capacity=form.cleaned_data['capacity'],
                 services=form.cleaned_data.get('services'),
+                location=eve,
                 date=form.cleaned_data['date'],
                 customer_id=cust_id,
                 cust_event_id=event_id
@@ -63,25 +65,12 @@ def get_prof_det(id):
     myprof = Customers.objects.get(cust_id=id)
     bookings = Bookings.objects.filter(
         customer_id=myprof)
-    # event_ids = []
-    # for j in bookings:
-    #     me = j
-    #     event_ids.append(me)
-    books = list(bookings.values_list('cust_event_id', flat=True))
-    # venues = {}
-    # for myid in books:
-    #     events = Events.objects.get(event_id=myid)
-    #     venues[myid] = events.location
-    venues = []
-    for myid in books:
-        events = Events.objects.get(event_id=myid)
-        venues.append(events.location)
     booked = {}
     i = 0
     for b in bookings:
         booked[i] = b
         i += 1
-    res = {"profile": myprof, "bookings": booked, "events": venues}
+    res = {"profile": myprof, "bookings": booked}
     return res
 
 
@@ -89,8 +78,6 @@ def edit_event(request, part_id=None):
     obj = Bookings.objects.get(
         book_id=part_id)
     if request.method == "POST":
-        cust_id = Customers.objects.get(cust_id=1)
-        event_id = Events.objects.get(event_id=1)
         form = EditEvent(request.POST, instance=obj)
         if form.is_valid():
             form.save()
@@ -99,5 +86,4 @@ def edit_event(request, part_id=None):
 
     else:
         form = EditEvent(instance=obj)
-    # context = {'form': form, 'data': obj}
     return render(request, 'EMSapp/edit_event.html', {'form': form})

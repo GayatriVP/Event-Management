@@ -18,6 +18,7 @@ class Bookings(models.Model):
     capacity = models.CharField(max_length=50)
     services = models.CharField(max_length=250)
     date = models.CharField(max_length=250)
+    location = models.CharField(max_length=500, default='Mumbai,Maharashtra')
     customer_id = models.ForeignKey(
         'EMSapp.Customers', on_delete=models.CASCADE, null=True)
     cust_event_id = models.ForeignKey(
