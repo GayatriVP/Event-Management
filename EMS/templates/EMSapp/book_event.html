@@ -11,6 +11,9 @@
       <fieldset>
         <legend>Booking Form</legend>
         {% csrf_token %}
+        {% if error %}
+        <p style="color: red;">{{error}}</p>
+        {% endif %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Submit</button>
       </fieldset>
