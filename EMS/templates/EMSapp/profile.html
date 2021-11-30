@@ -35,13 +35,13 @@
             <tr>           
                 <td>{{value.book_id}}</td>
                 <td>{{value.event_type}}</td>
-                <td>{{events.location}}</td>
+                <td>{{events.0}}</td>
                 <td>{{value.date}}</td>
                 <td>{{value.slots}}</td>
                 <td>{{value.capacity}}</td>
                 <td>{{value.services}}</td>
-                <td><button class="btn"><i class="fas fa-edit"></i></button></td>
-                <td><button class="btn"><i class="fas fa-trash"></i></button></td>
+                <td><button class="btn"><a href="{% url 'edit_booking' value.book_id%}" ><i class="fas fa-edit"></i></a></button></td>
+                <td><button class="btn"><a href="{% url 'delete_booking' value.book_id%}" ><i class="fas fa-trash"></i></a></button></td>
             </tr>
             {% endfor %}
         </table>

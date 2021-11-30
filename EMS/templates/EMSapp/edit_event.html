@@ -1,6 +1,6 @@
 {% extends 'main_template.html' %}
 {% load static %}
-{% block title %}EMS/Book Event{% endblock %}
+{% block title %}EMS/Update Event{% endblock %}
 {% block stylelinks %} 
 <link rel="stylesheet" href="{% static 'CSS/profile.css' %}"/>
 {% endblock %}
@@ -9,13 +9,12 @@
 <div class="container">
     <form name="form" method="POST">
       <fieldset>
-        <legend>Booking Form</legend>
+        <legend>Edit Booking</legend>
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Update</button>
       </fieldset>
     </form>
-    
 
 </div>
 {% endblock %}

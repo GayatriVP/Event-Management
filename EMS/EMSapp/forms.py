@@ -31,3 +31,18 @@ class BookEvent(forms.Form):
         widget=forms.CheckboxSelectMultiple, choices=SERVICES)
     date = forms.DateField(
         widget=forms.widgets.DateInput(attrs={'type': 'date'}))
+
+
+class EditEvent(forms.ModelForm):
+
+    class Meta:
+        # specify model to be used
+        model = Bookings
+        fields = ('slots', 'event_type', 'capacity', 'services', 'date')
+        widgets = {
+            'slots':  forms.CheckboxSelectMultiple(choices=Slots),
+            'event_type': forms.Select(choices=EVENT_TYPE),
+            'capacity': forms.Select(choices=CAPACITY),
+            'services': forms.CheckboxSelectMultiple(choices=SERVICES),
+            'date': forms.DateInput(attrs={'type': 'date'})
+        }
